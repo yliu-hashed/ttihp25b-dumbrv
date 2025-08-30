@@ -5,7 +5,18 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES := project.v
+PROJECT_SOURCES += dumbrv.v
+PROJECT_SOURCES += dumbrv-alu.v
+PROJECT_SOURCES += dumbrv-decode.v
+PROJECT_SOURCES += dumbrv-expand.v
+PROJECT_SOURCES += dumbrv-fetch.v
+PROJECT_SOURCES += dumbrv-lsu.v
+PROJECT_SOURCES += dumbrv-regs.v
+PROJECT_SOURCES += dumbrv-spi-read.v
+PROJECT_SOURCES += dumbrv-spi.v
+PROJECT_SOURCES += dumbrv-work.v
+PROJECT_SOURCES += dumbrv-gpio.v
 
 ifneq ($(GATES),yes)
 
