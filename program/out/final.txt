@@ -1,0 +1,61 @@
+
+out/final.o:     file format elf32-littleriscv
+
+
+Disassembly of section .init:
+
+00000000 <_start>:
+   0:	01001197          	auipc	x3,0x1001
+   4:	80018193          	addi	x3,x3,-2048 # 1000800 <__global_pointer$>
+   8:	01010117          	auipc	x2,0x1010
+   c:	ff810113          	addi	x2,x2,-8 # 1010000 <_sp>
+  10:	01000297          	auipc	x5,0x1000
+  14:	ff028293          	addi	x5,x5,-16 # 1000000 <buffer>
+  18:	01008317          	auipc	x6,0x1008
+  1c:	fe830313          	addi	x6,x6,-24 # 1008000 <_end>
+  20:	00628663          	beq	x5,x6,2c <_start+0x2c>
+  24:	0002a023          	sw	x0,0(x5)
+  28:	0291                	c.addi	x5,4
+  2a:	bfdd                	c.j	20 <_start+0x20>
+  2c:	01000297          	auipc	x5,0x1000
+  30:	fd428293          	addi	x5,x5,-44 # 1000000 <buffer>
+  34:	01000317          	auipc	x6,0x1000
+  38:	fcc30313          	addi	x6,x6,-52 # 1000000 <buffer>
+  3c:	09800393          	addi	x7,x0,152
+  40:	00628963          	beq	x5,x6,52 <_start+0x52>
+  44:	0003a503          	lw	x10,0(x7)
+  48:	00a2a023          	sw	x10,0(x5)
+  4c:	0291                	c.addi	x5,4
+  4e:	0391                	c.addi	x7,4
+  50:	bfc5                	c.j	40 <_start+0x40>
+  52:	4501                	c.li	x10,0
+  54:	4581                	c.li	x11,0
+  56:	2011                	c.jal	5a <main>
+
+00000058 <loop>:
+  58:	a001                	c.j	58 <loop>
+
+Disassembly of section .text:
+
+0000005a <main>:
+  5a:	800086b7          	lui	x13,0x80008
+  5e:	4781                	c.li	x15,0
+  60:	02000637          	lui	x12,0x2000
+  64:	010005b7          	lui	x11,0x1000
+  68:	16fd                	c.addi	x13,-1 # 80007fff <_sp+0x7eff7fff>
+  6a:	7561                	c.lui	x10,0xffff8
+  6c:	00064303          	lbu	x6,0(x12) # 2000000 <_sp+0xff0000>
+  70:	00058713          	addi	x14,x11,0 # 1000000 <buffer>
+  74:	973e                	c.add	x14,x15
+  76:	0785                	c.addi	x15,1
+  78:	00670023          	sb	x6,0(x14)
+  7c:	8ff5                	c.and	x15,x13
+  7e:	00058713          	addi	x14,x11,0
+  82:	0007d563          	bge	x15,x0,8c <main+0x32>
+  86:	17fd                	c.addi	x15,-1
+  88:	8fc9                	c.or	x15,x10
+  8a:	0785                	c.addi	x15,1
+  8c:	973e                	c.add	x14,x15
+  8e:	00074703          	lbu	x14,0(x14)
+  92:	00e60023          	sb	x14,0(x12)
+  96:	bfd9                	c.j	6c <main+0x12>
